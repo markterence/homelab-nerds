@@ -1,0 +1,21 @@
+---
+services:
+  traefik:
+    image: docker.io/library/traefik:v3.3.6
+    container_name: traefik_local
+    ports:
+      - 80:80
+      # --> (Optional) Enable Dashboard, don't do in production
+      # - 8080:8080
+      # <--
+    volumes:
+      - /run/docker.sock:/run/docker.sock:ro
+      - ./config/:/etc/traefik/:ro
+      - ./certs/:/var/traefik/certs/:rw
+    networks:
+      - traefik_local
+    restart: unless-stopped
+
+networks:
+  traefik_local:
+    external: true
