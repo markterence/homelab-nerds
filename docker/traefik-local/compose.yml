@@ -13,9 +13,9 @@ services:
       - ./config/:/etc/traefik/:ro
       - ./certs/:/var/traefik/certs/:rw
     networks:
-      - traefik_local
+      - homelab_nerds_traefik_local
     restart: unless-stopped
 
 networks:
-  traefik_local:
+  homelab_nerds_traefik_local:
     external: true
